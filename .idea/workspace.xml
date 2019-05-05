@@ -16,7 +16,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dizzy.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-904">
+            <state relative-caret-position="784">
               <caret line="58" column="81" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="81" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -94,12 +94,13 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="228" />
     <option name="y" value="21" />
     <option name="width" value="1109" />
     <option name="height" value="717" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -175,16 +176,17 @@
       <workItem from="1556086447819" duration="1380000" />
       <workItem from="1556242814766" duration="684000" />
       <workItem from="1556261636419" duration="785000" />
+      <workItem from="1557022984522" duration="603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35830000" />
+    <option name="totallyTimeSpent" value="36433000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="228" y="21" width="1109" height="717" extended-state="1" />
+    <frame x="228" y="21" width="1109" height="717" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.039215688" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.286648" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -217,7 +219,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dizzy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-904">
+        <state relative-caret-position="784">
           <caret line="58" column="81" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="81" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
