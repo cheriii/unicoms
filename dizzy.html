@@ -1,0 +1,215 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Scotch">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>高端用户，存费送费特惠活动</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+
+<div>
+<!-- Page Content -->
+<div id="page-wrapper nopadding" style="margin:auto;max-width:640px;padding: 0 !important;">
+    <div class="container-fluid nopadding">
+        <div class="row nopadding">
+            <style>
+                #phone,#checkoutCode{
+                    border: 0 solid;
+                    border-radius: 10px;
+                    margin:10px;
+                }
+                #effectType{
+                    border: 1px;
+                    /*border-radius: 20px;*/
+                    border-color: #0e0e0e;
+                    height: auto;
+                    background-color: #009fff;
+                    /*border-radius: 0 !important;*/
+                }
+                .submit_btn{background-color: #fb8a21 !important;color: white !important;}
+
+                #input_form{
+                    background-color: #e6fbf6;
+                    border-radius: 10px;
+                    border: solid 2px #009fff;
+                    padding: 10px;
+                    display: table;
+                    width:100%;
+                }
+                .txt_title{
+                    font-size: 2em;
+                }
+
+                .modal-dialog{z-index: 9999 !important;}
+
+            </style>
+
+            <div class="col-xs-12"  style="margin-bottom:10px;">
+                <img class="col-xs-12 nopadding"  src="https://pdc-1256519831.cos.ap-guangzhou.myqcloud.com/event/banner.jpg">
+            </div>
+
+            <div class="container">
+                <div class="row" >
+                <div class="col-sm-6">
+                        <button type="button" id="button1" class="btn btn-warning btn-block" style="">充50送5元</button>
+            </div>
+
+                <div class="col-sm-6">
+                        <button type="button" id="button2" class="btn btn-warning btn-block" style>充100送10元</button>
+            </div>
+                </div>
+
+        </div>
+
+            <div class="col-xs-12" style="width:640px; margin-top:10px;">
+                <div id="input_form">
+                    <form class="form-horizontal" id="joinMaker" >
+                        <div class="alert" role="alert" id="alert_info" style="display:none;margin-top: 10px;">...</div>
+
+                        <!--<div class="col-xs-12" style="text-align: center">-->
+                            <!--<span class="txt_title" style="color: #009fff">存100元</span><span class="txt_title" style="color: #fb8a21">送240元话费</span>-->
+                        <!--</div>-->
+
+                        <div class="input-group input-group-lg input-div col-xs-12">
+                            <input type="text" id="phone" name="phone" class="form-control col-xs-12"  placeholder="请输入您的手机号码">
+                        </div>
+
+                        <div class="col-xs-12" style="padding:0 !important;">
+                            <a type="button"  class="btn  btn-lg btn-block button input-div submit_btn">进往缴费</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="col-xs-12"  style="text-align: center;margin-top:10px; margin-bottom: 80px">
+
+                <div class="col-xs-12 nopadding" style="background-color:#4b60bd;border: 1px solid transparent;border-radius: 6px;padding: 25px !important;color: white">
+                    <div class="col-xs-12" style="text-align: center;font-size:2em;color: white">活动说明</div>
+                    <div class="col-xs-12 nopadding" style="text-align: left;margin-bottom:1%" > 1、活动限量<span style="color:yellow">1000</span>份；</div>
+                    <div class="col-xs-12 nopadding" style="text-align: left;margin-bottom:1%" > 2、存费及赠费均为自由经营，赠费在3个工作日内赠送到账，无短信通知，请注意查账；</div>
+                    <div class="col-xs-12 nopadding" style="text-align: left;margin-bottom:1%" > 3、每人<span style="color:yellow">仅可参加一次</span>活动，重复参与只赠送一次话费；</div>
+                    <div class="col-xs-12 nopadding" style="text-align: left;margin-bottom:1%" > 4、本活动最终解释权归长沙联通所有.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 提示层 -->
+<div class="globalbox" style="display: none;">
+    <div class="box">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <span id="alert_text">正在加载中..</span>
+    </div>
+</div>
+<!-- 提示层结束-->
+</div>
+<!-- /#page-wrapper -->
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
+<!--自定义alert-->
+<script src="js/dialog.js"></script>
+<script>
+    $(function () {
+        $('body').css('background-color', '#6bacd5');
+        var phone = $("#phone");
+        var lock=false;
+
+        $(".submit_btn").click(function () {
+            if (lock)
+            {
+                return false;
+            }
+            bValid = true;
+            bValid = bValid && checkRegexp(phone, /^(1(([35][0-9])|(47)|[78][012356789]))\d{8}$/, "手机号码格式错误", $('#alert_info'));
+
+            if (bValid) {
+                lock = true;
+                $(".globalbox").show();
+                $.getJSON("/event/specialChargeVipVerify", {
+                    phone: phone.val(),
+                    fee:"240"
+                }, function (json) {
+                    lock = false;
+                    //非验证码失效
+                    if (json.code != 1) {
+                        $(".globalbox").hide();
+                        Alert(json.desc);
+                    } else {
+                        $(".globalbox").hide();
+                        var money=100;
+                        if( parseInt("240") >50){
+                            money=100;
+                        } else{
+                            money=50;
+                        }
+
+                        window.location = "http://mall.73110010.com/t/charge?uid=z&mdn=" + phone.val() + "&money=" + money + "&outShopArea=A";  //+$('.current').data('money');
+                    }
+                })
+            }
+        })
+
+        var $modal = $('#alert_modal');
+        $modal.on('show.bs.modal', function () {
+            var $this = $(this);
+            var $modal_dialog = $this.find('.modal-dialog');
+            // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+            $this.css('display', 'block');
+            $this.css('z-index', '999');
+            alert(Math.max(0, ($(window).height() - $modal_dialog.height()) / 2));
+            $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2)});
+        });
+
+
+    })
+
+    // js functions
+    $.fn.scrollView = function () {
+        return this.each(function () {
+            $('html, body').animate({
+                scrollTop: $(this).offset().top
+            }, 1000);
+        });
+    }
+    function checkRegexp(o, regexp, n, tip) {
+        if (!( regexp.test(o.val()) )) {
+            tip.show().html(n).addClass('alert-warning');
+            tip.scrollView();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c2e890c6b09125d0533b7759b58e807d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
